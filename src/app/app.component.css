@@ -1,0 +1,26 @@
+.pd0 {
+  padding: 0px;
+}
+.pdR0 {
+  padding-right: 0px;
+}
+.pd20 {
+  padding: 20px;
+}
+.pd20dx {
+  padding: 20px 20px 0px 20px;
+}
+.mxW100 {
+  max-width: 100%;
+}
+.posLeft7 {
+  left: 7px;
+  position: relative;
+}
+.addBtn {
+  width: 150px;
+  float: right;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
