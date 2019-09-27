@@ -28,7 +28,7 @@ export class ApiService {
           'Accept': 'text/html',
           'Content-Type': 'application/json'
       }),
-      responseType: 'text'
+      responseType: 'text' as 'text'
     };
     return this.httpClient.post(`https://jsonplaceholder.typicode.com/${dataType}`, data, options);
   }

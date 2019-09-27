@@ -52,16 +52,17 @@ export class AppComponent implements OnInit {
   deleteItem(item, id) {
     console.log('Delete item: ', item);
     this.apiService.deleteData('users', id, item).subscribe((data) => {
-      console.log('New Data After Delete: ', data);
       //Data is not deleted from API so commenting this out for now
       //this.items = data;
+      //item deleted message
+      alert('the user with ID ' + id + ' was deleted!');
     });
   }
 
   addItem(data) {
     this.apiService.postData('users', JSON.stringify(data)).subscribe((newData) => {
-      console.log('New data after post: ', newData);
       this.items = newData;
+      alert(data.username + ' has been added!');
     })
   }
 
@@ -102,14 +103,10 @@ export class AppComponent implements OnInit {
     const finalId = this.getLatestID();
     var finalCatchPhrase = '';
     var finalBs = '';
-    if(this.newUserForm.value.catchPhrase == null) {
-      finalCatchPhrase = '';
-    } else {
+    if(this.newUserForm.value.catchPhrase != null) {
       finalCatchPhrase = this.newUserForm.value.catchPhrase;
     }
-    if(this.newUserForm.value.bs == null) {
-      finalBs = ''
-    } else {
+    if(this.newUserForm.value.bs != null) {
       finalBs = this.newUserForm.value.bs;
     }
     const data = {
