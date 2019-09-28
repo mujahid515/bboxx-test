@@ -1,0 +1,119 @@
+<!-- Add new user modal -->
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLongTitle">Add New User</h5>
+    <button type="button" class="close" (click)="apiService.navigateTo('/search')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="newUserForm" (ngSubmit)="onSubmit()">
+        <div class="form-row">
+            <div class="form-group col-12 col-md-6">
+                <label>First Name</label>
+                <input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
+                <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                    <div *ngIf="f.firstName.errors.required">First Name is required</div>
+                </div>
+            </div>
+            <div class="form-group col-12 col-md-6">
+                <label>Last Name</label>
+                <input type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+                <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                    <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-12 col-md-6">
+              <label>Email</label>
+              <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+              <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                  <div *ngIf="f.email.errors.required">Email is required</div>
+                  <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+              </div>
+          </div>
+          <div class="form-group col-12 col-md-6">
+              <label>Phone</label>
+              <input type="text" formControlName="phone" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" />
+              <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+                  <div *ngIf="f.phone.errors.required">Phone number is required</div>
+              </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-12 col-md-6">
+              <label>Username</label>
+              <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+              <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                  <div *ngIf="f.username.errors.required">Username is required</div>
+              </div>
+          </div>
+          <div class="form-group col-12 col-md-6">
+              <label>Website</label>
+              <input type="text" formControlName="website" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.website.errors }" />
+              <div *ngIf="submitted && f.website.errors" class="invalid-feedback">
+                  <div *ngIf="f.website.errors.required">Website is required</div>
+              </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-12 col-md-2">
+              <label>Suite</label>
+              <input type="text" formControlName="suite" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.suite.errors }" />
+              <div *ngIf="submitted && f.suite.errors" class="invalid-feedback">
+                  <div *ngIf="f.suite.errors.required">Suite is required</div>
+              </div>
+          </div>
+          <div class="form-group col-12 col-md-4">
+              <label>Street</label>
+              <input type="text" formControlName="street" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.street.errors }" />
+              <div *ngIf="submitted && f.street.errors" class="invalid-feedback">
+                  <div *ngIf="f.street.errors.required">Street is required</div>
+              </div>
+          </div>
+          <div class="form-group col-12 col-md-3">
+              <label>City</label>
+              <input type="text" formControlName="city" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.city.errors }" />
+              <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
+                  <div *ngIf="f.city.errors.required">City is required</div>
+              </div>
+          </div>
+          <div class="form-group col-12 col-md-3">
+              <label>Zip Code</label>
+              <input type="text" formControlName="zipcode" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.zipcode.errors }" />
+              <div *ngIf="submitted && f.zipcode.errors" class="invalid-feedback">
+                  <div *ngIf="f.zipcode.errors.required">Zip Code is required</div>
+              </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-12 col-md-4">
+              <label>Company Name</label>
+              <input type="text" formControlName="companyName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.companyName.errors }" />
+              <div *ngIf="submitted && f.companyName.errors" class="invalid-feedback">
+                  <div *ngIf="f.companyName.errors.required">Company Name is required</div>
+              </div>
+          </div>
+          <div class="form-group col-12 col-md-4">
+              <label>Catch Phrase</label>
+              <input type="text" formControlName="catchPhrase" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.catchPhrase.errors }" />
+              <!--<div *ngIf="submitted && f.catchPhrase.errors" class="invalid-feedback">
+                  <div *ngIf="f.catchPhrase.errors.required">Catch Phrase is required</div>
+              </div>-->
+          </div>
+          <div class="form-group col-12 col-md-4">
+              <label>BS</label>
+              <input type="text" formControlName="bs" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.bs.errors }" />
+              <!--<div *ngIf="submitted && f.bs.errors" class="invalid-feedback">
+                  <div *ngIf="f.bs.errors.required">BS is required</div>
+              </div>-->
+          </div>
+        </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="apiService.navigateTo('/search')">Close</button>
+    <button type="button" class="btn btn-primary" (click)="onSubmit()">Submit</button>
+  </div>
+</div>

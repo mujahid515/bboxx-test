@@ -1,0 +1,43 @@
+<!-- main app container -->
+<div class="card">
+    <h3 class="card-header">BBOXX Pagination Example</h3>
+    <button (click)="addUser()" class="btn btn-primary addBtn"><fa name="plus" size="lg"></fa> Add New User</button>
+    <div class="container mxW100">
+      <div class="row pd20dx">
+        <div class="col-8 pd0">
+          <input *ngIf="currentFilter == 'id'" class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search by ID...">
+          <input *ngIf="currentFilter == 'name'" class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search by Name...">
+          <input *ngIf="currentFilter == 'username'" class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search by Username...">
+        </div>
+        <div class="col-4 pdR0">
+          <select class="form-control" id="selectFilter" (change)="updateFilter($event)">
+            <option>id</option>
+            <option>name</option>
+            <option>username</option>
+          </select>
+        </div>
+      </div>
+      <div class="row pd20">
+        <div *ngFor="let item of items | filter:searchText:currentFilter | paginate: { itemsPerPage: 10, currentPage: pageNumber }" class="card col-md-3 col-12 pd0">
+          <div class="card-body">
+            <h5 class="card-title">{{ item.name }}</h5>
+            <div class="card-text">
+              <p>ID: {{ item.id }}</p>
+              <p>Email: {{ item.email }}</p>
+              <p>Phone: {{ item.phone }}</p>
+              <p>Username: {{ item.username }}</p>
+              <p>Address: {{ item.address.suite }}, {{ item.address.street }}, {{ item.address.city }}, {{ item.address.zipcode }}</p>
+              <p>Company: {{ item.company.name }}</p>
+            </div>
+          </div>
+          <div class="card-footer">
+            <small class="text-muted"><a href="http://{{ item.website }}" target="_blank">{{ item.website }}</a></small>
+            <button (click)="deleteItem(item, item.id)" class="btn btn-danger float-right posLeft7"><fa name="trash" size="lg"></fa></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer pb-0 pt-3">
+        <pagination-controls (pageChange)="pageNumber = $event"></pagination-controls>
+    </div>
+</div>
