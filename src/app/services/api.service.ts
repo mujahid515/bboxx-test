@@ -71,7 +71,6 @@ export class ApiService {
     //afer the first user is added we will concat on finalArray as database is not really updated
     var array = this.finalArray;
     this.finalArray = array.concat([JSON.parse(data)]);
-    console.log('finalArray: ', this.finalArray);
     this.updateUsersList(this.finalArray) //If we didnt use a local version of API data this would be needed
     Swal.fire({
       title: 'Success!',
