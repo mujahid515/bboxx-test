@@ -1,13 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
-import { SearchComponent } from './search/search.component';
-import { HomeComponent } from './home/home.component';
-import { AddComponent } from './add/add.component';
+import { SearchComponent } from './pages/search/search.component';
+import { AddComponent } from './pages/add/add.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'search', component: SearchComponent },
+  { path: '', component: SearchComponent },
   { path: 'add', component: AddComponent }
 ];
 

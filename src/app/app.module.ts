@@ -10,17 +10,15 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { MySearchPipe } from './pipes/my-search-pipe.pipe';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { ReactiveFormsModule } from '@angular/forms';
-import { SearchComponent } from './search/search.component';
-import { AddComponent } from './add/add.component';
-import { HomeComponent } from './home/home.component';
+import { SearchComponent } from './pages/search/search.component';
+import { AddComponent } from './pages/add/add.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MySearchPipe,
     SearchComponent,
-    AddComponent,
-    HomeComponent
+    AddComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +30,7 @@ import { HomeComponent } from './home/home.component';
     AngularFontAwesomeModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [SearchComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -1,12 +1,12 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { AppComponent } from './app.component';
-import { MySearchPipe } from './pipes/my-search-pipe.pipe';
-import { SearchComponent } from './pages/search/search.component';
-import { AddComponent } from './pages/add/add.component';
+import { AppComponent } from '../../app.component';
+import { MySearchPipe } from '../../pipes/my-search-pipe.pipe';
+import { SearchComponent } from '../search/search.component';
+import { AddComponent } from './add.component';
 
 import { BrowserModule } from '@angular/platform-browser';
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule } from '../../app-routing.module';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
@@ -37,10 +37,11 @@ beforeEach(async(() => {
   }).compileComponents();
 }));
 
-describe('AppComponent', () => {
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
+describe('ngOnInit', () => {
+  it('should build a form group', () => {
+    const fixture = TestBed.createComponent(AddComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
+    app.ngOnInit();
+    expect(app.formBuilder.group).toBeTruthy();
   });
 });

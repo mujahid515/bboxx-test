@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../services/api.service';
+import { ApiService } from '../../services/api.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { take } from 'rxjs/operators';
+import { SearchComponent } from '../search/search.component';
 
 @Component({
   selector: 'app-add',
@@ -15,9 +16,13 @@ export class AddComponent implements OnInit {
   newUserForm: FormGroup;
   submitted = false;
 
-  constructor(private apiService: ApiService, private formBuilder: FormBuilder) { }
+  constructor(private apiService: ApiService, private formBuilder: FormBuilder, private searchComponent: SearchComponent) { }
 
   ngOnInit() {
+    //in case someone comes directly to /add route
+    if(!this.apiService.freezeData) {
+      this.searchComponent.getItems();
+    }
     this.newUserForm = this.formBuilder.group({
       street: ['', Validators.required],
       suite: ['', Validators.required],
@@ -36,7 +41,6 @@ export class AddComponent implements OnInit {
   }
 
   addItem(data) {
-    console.log('DATA!: ', data);
     this.apiService.postData('users', JSON.stringify(data));
   }
 
@@ -54,11 +58,16 @@ export class AddComponent implements OnInit {
   get f() { return this.newUserForm.controls; }
 
   public maxID(listOfIDs, data) {
-    for(var i = 0; i < data.length; i++) {
-      listOfIDs.push(data[i].id);
+    if(data.length == 0) {
+      return 1;
+    } else {
+      for(var i = 0; i < data.length; i++) {
+        listOfIDs.push(data[i].id);
+      }
+      var newID = Math.max.apply(Math, listOfIDs) + 1;
+      return newID;
     }
-    var newID = Math.max.apply(Math, listOfIDs) + 1;
-    return newID;
+
   }
 
   public getLatestID() {
@@ -66,7 +75,7 @@ export class AddComponent implements OnInit {
     var prom = new Promise((resolve, reject) => {
       this.apiService.currentUsers.pipe(take(1)).subscribe((data) => {
         //afer the first user is added we will calculate ID from finalArray as database is not really updated
-        if(!this.apiService.firstPost) {
+        if(this.apiService.freezeData) {
           resolve(this.maxID(listOfIDs, this.apiService.finalArray));
         } else {
           resolve(this.maxID(listOfIDs, data[0]));
@@ -115,7 +124,6 @@ export class AddComponent implements OnInit {
         username: this.newUserForm.value.username,
         website: this.newUserForm.value.website
       }
-      console.log('FinalData: ', data);
       this.addItem(data);
       this.hideAddUserForm();
     })
